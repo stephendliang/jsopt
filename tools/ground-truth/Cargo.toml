@@ -1,0 +1,28 @@
+[package]
+name = "ground-truth"
+version = "0.1.0"
+edition = "2021"
+
+# Ground truth harness for jsopt development.
+# Uses oxc (Rust JS toolchain) as reference implementation.
+#
+# Build: cd tools/ground-truth && cargo build --release
+# Run:   cargo run --release -- <mode> <file.js>
+#
+# If version 0.114 is unavailable, run:
+#   cargo search oxc_parser
+# and update all versions to match.
+
+[dependencies]
+oxc_allocator = "=0.114.0"
+oxc_ast = "=0.114.0"
+oxc_ast_visit = "=0.114.0"
+oxc_codegen = "=0.114.0"
+oxc_mangler = "=0.114.0"
+oxc_parser = { version = "=0.114.0", features = ["benchmarking"] }
+oxc_semantic = "=0.114.0"
+oxc_span = "=0.114.0"
+
+[profile.release]
+opt-level = 3
+lto = true
